@@ -9,10 +9,6 @@ class MyController extends Controller
     public function my_data(){
         return view('test');
     }}
-   
-// namespace App\Http\Controllers;
-
-// use Illuminate\Http\Request;
 
 // class FormController extends Controller
 // {
