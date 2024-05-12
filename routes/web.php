@@ -5,8 +5,18 @@ use App\Http\Controllers\MyController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\StudentController;
 
+
+
+Route::get('formdisplay',[ClientController::class,'create'])->name('receiveform2');
+Route::get('Add',[ClientController::class,'create'])->name('Add');
+Route::get('Clients',[ClientController::class,'index'])->name('Clients');
+Route::post('insertClient',[ClientController::class,'store'])->name('insertClient');
+
+//task 3- task 4
 Route::post('insertStudent',[StudentController::class,'store'])->name('insertStudent');
-Route::get('addStudent',[StudentController::class,'create']);
+Route::get('addStudent',[StudentController::class,'create'])->name('AddStusent');
+Route::get('Students',[StudentController::class,'index'])->name('Students');
+//task 3- task 4
 
 Route::get('test',[MyController::class,'my_data']);
 
@@ -80,6 +90,3 @@ Route::post('/receive-form', function (Request $request) {
 //     return view('formdisplay');
 // })->name('receiveform2');
 
-
-Route::get('formdisplay',[ClientController::class,'create'])->name('receiveform2');
-Route::post('insertClient',[ClientController::class,'store'])->name('insertClient');
