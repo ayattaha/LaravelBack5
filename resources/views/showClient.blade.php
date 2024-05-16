@@ -9,33 +9,24 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-@include('includes.nav')
-<div class="container">
-  <h2>Clients Data</h2>
+  <h2>{{$client->ClienName}}</h2>
   <table class="table table-hover">
     <thead>
     <tbody>
-@foreach($clients as $client)
-      <tr>
-        <td>{{$client->ClienName}}</td>
+    <tr>
+        <td>Name</td>
+        <td>Phone</td>
+        <td>Email</td>
+        <td>Website</td>
+    </tr>
+    <tr>
+    <td>{{$client->ClienName}}</td>
         <td>{{$client->phone}}</td>
         <td>{{$client->email}}</td>
         <td>{{$client->website}}</td>
-        <td><a href="{{route('editClients', $client->id)}}"> Edite </a></td>
-        <td><a href="showClient/{{ $client->id }}">Show</a></td>
-        <td>
-<form action="{{ route('deleteClient') }}" method="post">
-@csrf
-@method('DELETE')
-<input type="hidden" name="id" value="{{ $client->id }}">
-<input type="submit" value="delete">
-</form>
-</td>
-      </tr>
-     @endforeach 
+        </tr>
+ 
     </tbody>
   </table>
-</div>
-
-</body>
+  </body>
 </html>

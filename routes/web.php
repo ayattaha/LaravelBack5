@@ -11,6 +11,16 @@ Route::get('formdisplay',[ClientController::class,'create'])->name('receiveform2
 Route::get('Add',[ClientController::class,'create'])->name('Add');
 Route::get('Clients',[ClientController::class,'index'])->name('Clients');
 Route::post('insertClient',[ClientController::class,'store'])->name('insertClient');
+//..................day 5
+Route::get('editClients/{id}',[ClientController::class,'edit'])->name('editClients');
+Route::put('updateClients/{id}',[ClientController::class,'update'])->name('updateClients');
+//show 1 row
+Route::get('showClient/{id}',[ClientController::class,'show'])->name('showClient');
+//delet client
+Route::delete('deleteClient',[ClientController::class,'destroy'])->name('deleteClient');
+
+
+
 
 //task 3- task 4
 Route::post('insertStudent',[StudentController::class,'store'])->name('insertStudent');
@@ -18,6 +28,20 @@ Route::get('addStudent',[StudentController::class,'create'])->name('AddStusent')
 Route::get('Students',[StudentController::class,'index'])->name('Students');
 //task 3- task 4
 
+//task 5
+Route::get('editStudent/{id}',[StudentController::class,'edit'])->name('editStudent');
+Route::put('updateStudents/{id}',[StudentController::class,'update'])->name('updateStudents');
+
+//show 1 row
+Route::get('showStudent/{id}',[StudentController::class,'show'])->name('showStudent');
+//delet client
+Route::delete('deleteStudent',[StudentController::class,'destroy'])->name('deleteStudent');
+
+
+
+
+
+//
 Route::get('test',[MyController::class,'my_data']);
 
 Route::get('insertClient',[ClientController::class,'store']);
