@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Clients</title>
+  <title>Students</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -9,34 +9,22 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-@include('includes.nav')
+@include('includes.navs')
 <div class="container">
-  <h2>Clients Data</h2>
+  <h2>Students Trashed Data</h2>
   <table class="table table-hover">
     <thead>
     <tbody>
+@foreach($trash as $student)
       <tr>
-        <td>Name</td>
-        <td>Phone</td>
-        <td>Email</td>
-        <td>Website</td>
-        <td>Edite</td>
-        <td>Show</td>
-        <td>Delete</td>
-</tr>
-@foreach($clients as $client)
-      <tr>
-        <td>{{$client->ClienName}}</td>
-        <td>{{$client->phone}}</td>
-        <td>{{$client->email}}</td>
-        <td>{{$client->website}}</td>
-        <td><a href="{{route('editClients', $client->id)}}"> Edite </a></td>
-        <td><a href="showClient/{{ $client->id }}">Show</a></td>
+        <td>{{$student->StdudentName}}</td>
+        <td>{{$student->age}}</td>
+        <td><a href="{{route('restorStudent', $student->id)}}"> Restore </a></td>
         <td>
-<form action="{{ route('deleteClient') }}" method="post">
+<form action="{{ route('forceDeleteStudent') }}" method="post">
 @csrf
 @method('DELETE')
-<input type="hidden" name="id" value="{{ $client->id }}">
+<input type="hidden" name="id" value="{{ $student->id }}">
 <input type="submit" value="delete">
 </form>
 </td>

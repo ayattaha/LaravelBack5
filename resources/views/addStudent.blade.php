@@ -9,27 +9,33 @@
 </head>
 <body>
 @include('includes.navs')
-<nav class="navbar navbar-inverse">
+<!-- <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">Students</a>
-    </div>
+    <!-- </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="{{ route('AddStusent') }}">Add Student</a></li>
           <li><a href="{{ route('Students') }}">Students</a></li>
        
     </ul>
-  </div>
-</nav>
+  </div> -->
+<!-- </nav> --> 
 <h2>Inser Student</h2>
 
 <form action="{{ route('insertStudent') }}" method="POST">
     @csrf
   <label for="StudentName">Student name:</label><br>
-  <input type="text"  name="StdudentName" value=""><br>
+  <p><font color="red">@error('StdudentName')
+{{ $message }}
+@enderror</font></p>
+  <input type="text"  name="StdudentName" value="{{ old('StdudentName') }}"><br>
   
   <label for="age">age:</label><br>
-  <input type="integer"  name="age" value=""><br>
+  <p><font color="red">@error('age')
+{{ $message }}
+@enderror</font></p>
+  <input type="integer"  name="age" value="{{ old('age') }}"><br>
   
 <br>
  

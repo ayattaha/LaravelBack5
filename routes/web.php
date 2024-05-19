@@ -19,7 +19,17 @@ Route::get('showClient/{id}',[ClientController::class,'show'])->name('showClient
 //delet client
 Route::delete('deleteClient',[ClientController::class,'destroy'])->name('deleteClient');
 
+// day 6
+Route::get('trashedClients',[ClientController::class,'showDeleted'])->name('trashedClients');
+Route::get('restorClient/{id}',[ClientController::class,'restore'])->name('restorClient');
 
+Route::delete('ForceDeleteClient',[ClientController::class,'forceDelete'])->name('ForceDeleteClient');
+
+//Task 6
+Route::get('trashedStudent',[StudentController::class,'showDeleted'])->name('trashedStudent');
+Route::get('restorStudent/{id}',[StudentController::class,'restore'])->name('restorStudent');
+
+Route::delete('forceDeleteStudent',[StudentController::class,'forceDelete'])->name('forceDeleteStudent');
 
 
 //task 3- task 4

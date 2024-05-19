@@ -15,6 +15,13 @@
   <table class="table table-hover">
     <thead>
     <tbody>
+    <tr>
+        <td>Name</td>
+        <td>age</td>
+        <td>Edite</td>
+        <td>show</td>
+        <td>delete</td>
+    </tr>
 @foreach($students as $student)
       <tr>
         <td>{{$student->StdudentName}}</td>
