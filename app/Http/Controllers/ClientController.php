@@ -15,6 +15,28 @@ class ClientController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+ public function showDeleted()
+{
+$trash = Client::onlyTrashed()->get();
+return view('clientsTrash', compact('trash'));
+}
+
+
+public function restore(string $id)
+{
+Client::where('id', $id)->restore();
+return redirect('Clients');
+// return "Success";
+}
+
+public function forceDelete(Request $request)
+{
+    $id = $request->id;
+Client::where('id', $id)->forceDelete();
+return redirect('Clients');
+}
+
     public function index()
     {
         $clients=Client::get();
@@ -41,7 +63,14 @@ class ClientController extends Controller
         // $client->website=$request->input('website');
         // $client->save();
         //return'Data Inserted successully';
-        Client::create($request->only($this->columns));
+        $data=$request->validate([
+            'ClienName'=>'required|max:100|min:11',
+            'phone'=>'required|min:11',
+            'email'=>'required|email:rfc',
+            'website'=>'required',
+        ]);
+        //Client::create($request->only($this->columns));
+        Client::create($data);
         return redirect('Clients');
     }
 

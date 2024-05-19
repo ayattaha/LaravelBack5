@@ -27,17 +27,27 @@
 <form action="{{ route('insertClient') }}" method="POST">
     @csrf
   <label for="ClienName">Client name:</label><br>
-  <input type="text"  name="ClienName" value=""><br>
+  <p color="red">@error('ClienName')
+{{ $message }}
+@enderror</p>
+  <input type="text"  name="ClienName" value="{{ old('ClienName') }}"><br>
   
   <label for="phone">phone:</label><br>
-  <input type="text"  name="phone" value=""><br>
+  <p color="red">@error('phone')
+{{ $message }}
+@enderror</p>
+  <input type="text"  name="phone" value="{{ old('phone') }}"><br>
   
   <label for="email">email:</label><br>
-  <input type="email"  name="email" value=""><br>
-  
+  <input type="email"  name="email" value="{{ old('email') }}"><br>
+  <p color="red">@error('email')
+{{ $message }}
+@enderror</p>
   <label for="website">website:</label><br>
-  <input type="text"  name="website" value=""><br><br>
- 
+  <input type="text"  name="website" value="{{ old('website') }}"><br><br>
+  <p color="red">@error('website')
+{{ $message }}
+@enderror</p>
   <input type="submit" value="Submit">
 </form> 
 </div>

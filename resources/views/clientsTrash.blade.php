@@ -11,7 +11,7 @@
 <body>
 @include('includes.nav')
 <div class="container">
-  <h2>Clients Data</h2>
+  <h2>Clients Trash</h2>
   <table class="table table-hover">
     <thead>
     <tbody>
@@ -20,20 +20,18 @@
         <td>Phone</td>
         <td>Email</td>
         <td>Website</td>
-        <td>Edite</td>
-        <td>Show</td>
+        <td>Restore</td>
         <td>Delete</td>
 </tr>
-@foreach($clients as $client)
+@foreach($trash as $client)
       <tr>
         <td>{{$client->ClienName}}</td>
         <td>{{$client->phone}}</td>
         <td>{{$client->email}}</td>
         <td>{{$client->website}}</td>
-        <td><a href="{{route('editClients', $client->id)}}"> Edite </a></td>
-        <td><a href="showClient/{{ $client->id }}">Show</a></td>
+        <td><a href="{{route('restorClient', $client->id)}}"> Restore </a></td>
         <td>
-<form action="{{ route('deleteClient') }}" method="post">
+<form action="{{ route('ForceDeleteClient') }}" method="post">
 @csrf
 @method('DELETE')
 <input type="hidden" name="id" value="{{ $client->id }}">

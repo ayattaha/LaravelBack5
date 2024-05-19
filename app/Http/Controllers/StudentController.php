@@ -36,8 +36,15 @@ class StudentController extends Controller
         // $student->save();
         // return'Data Inserted successully';
 
-        Student::create($request->only($this->columns));
-        return redirect('Students');
+        // Student::create($request->only($this->columns));
+        // return redirect('Students');
+
+        $data=$request->validate([
+            'StdudentName'=>'required|max:100|min:7',
+            'age' => 'required|integer|between:18,100',
+        ]);
+        Student::create($data);
+        return redirect('addStudent');
     }
 
     /**
@@ -78,4 +85,23 @@ class StudentController extends Controller
     return redirect('Students');
         }
     }
+    public function restore(string $id)
+    {
+        Student::where('id', $id)->restore();
+    return redirect('Students');
+    // return "Success";
+    }
+    public function forceDelete(Request $request)
+{
+    $id = $request->id;
+    Student::where('id', $id)->forceDelete();
+      return redirect('Students');
+}
+public function showDeleted()
+{
+$trash = Student::onlyTrashed()->get();
+return view('studentsTrash', compact('trash'));
+}
+    
+
 }
