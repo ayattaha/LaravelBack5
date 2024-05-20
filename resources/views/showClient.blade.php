@@ -10,10 +10,12 @@
 </head>
 <body>
   <h2>{{$client->ClienName}}</h2>
+  <p><img src="{{asset('assets/images/'.$client->image)}}" alt=""width="300" height="200"></p>
   <table class="table table-hover">
     <thead>
     <tbody>
     <tr>
+        
         <td>Name</td>
         <td>Phone</td>
         <td>Email</td>

@@ -13,6 +13,9 @@ class Client extends Model
         'ClienName',
         'phone',
         'email',
-        'website'
+        'website',
+        'city',
+        'active',
+        'image'
     ];
 }
