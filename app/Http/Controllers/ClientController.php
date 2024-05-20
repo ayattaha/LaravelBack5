@@ -63,17 +63,34 @@ return redirect('Clients');
         // $client->website=$request->input('website');
         // $client->save();
         //return'Data Inserted successully';
+        $messages=$this->errMsg();
         $data=$request->validate([
             'ClienName'=>'required|max:100|min:11',
             'phone'=>'required|min:11',
             'email'=>'required|email:rfc',
             'website'=>'required',
-        ]);
+            'city'=>'required|max:30|',
+            'image'=>'required'
+        ], $messages);
+// to upload image........
+        $imgExt = $request->image->getClientOriginalExtension();
+        $fileName = time() . '.' . $imgExt;
+        $path = 'assets/images';
+        $request->image->move($path, $fileName);
+        $data['image']= $fileName;
+
         //Client::create($request->only($this->columns));
+        $data['active']=isset($request->active);
         Client::create($data);
         return redirect('Clients');
     }
-
+//error Message
+public function errMsg(){
+   return [
+        'ClienName.required'=>'Client Name  is required, please Enter the name',
+        'ClienName.min'=>'Should be minimum 11 letteres, please enter again',
+   ];
+}
     /**
      * Display the specified resource.
      */
@@ -97,7 +114,30 @@ return redirect('Clients');
      */
     public function update(Request $request, string $id)
     {
-        Client::where('id', $id)->update($request->only($this->columns));
+        $messages=$this->errMsg();
+        $data=$request->validate([
+            'ClienName'=>'required|max:100|min:11',
+            'phone'=>'required|min:11',
+            'email'=>'required|email:rfc',
+            'website'=>'required',
+            'city'=>'required|max:30|',
+            'image'=>'nullable|image|max:2048|mimes:jpeg,png,gif'
+        ], $messages);
+        // to update image and delete old one
+       // Handle image upload
+    if ($request->hasFile('image')) {
+        $imgExt = $request->image->getClientOriginalExtension();
+        $fileName = time() . '.' . $imgExt;
+        $path = 'assets/images';
+        $request->image->move($path, $fileName);
+        $data['image'] = $fileName;
+    }
+
+    // Set 'active' field based on checkbox value
+    $data['active'] = $request->has('active');
+
+
+        Client::where('id', $id)->update($data);
               return redirect('Clients');
     }
 
