@@ -48,6 +48,12 @@
   <p color="red">@error('website')
 {{ $message }}
 @enderror</p>
+
+<label for="address">Address:</label><br>
+<input type="text"  name="address" value="{{ old('website') }}" class="form-control"><br><br>
+
+
+
 <label for="city">City:</label><br>
 
     <select name="city" id="city" class="form-control">

@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Client;
+use App\Traits\UploadFile;
 
 class ClientController extends Controller
 {
+use UploadFile;
+
   private $columns=['ClienName',
   'phone',
   'email',
@@ -70,15 +73,20 @@ return redirect('Clients');
             'email'=>'required|email:rfc',
             'website'=>'required',
             'city'=>'required|max:30|',
-            'image'=>'required'
+            'image'=>'required',
+            'address'=>'required'
         ], $messages);
 // to upload image........
-        $imgExt = $request->image->getClientOriginalExtension();
-        $fileName = time() . '.' . $imgExt;
-        $path = 'assets/images';
-        $request->image->move($path, $fileName);
+        // $imgExt = $request->image->getClientOriginalExtension();
+        // $fileName = time() . '.' . $imgExt;
+        // $path = 'assets/images';
+        // $request->image->move($path, $fileName);
+        // $data['image']= $fileName;
+       
+        // Upload image using Trait
+        $fileName = $this->uploadFile($request->image, 'assets/images');
         $data['image']= $fileName;
-
+       
         //Client::create($request->only($this->columns));
         $data['active']=isset($request->active);
         Client::create($data);
@@ -126,16 +134,17 @@ public function errMsg(){
         // to update image and delete old one
        // Handle image upload
     if ($request->hasFile('image')) {
-        $imgExt = $request->image->getClientOriginalExtension();
-        $fileName = time() . '.' . $imgExt;
-        $path = 'assets/images';
-        $request->image->move($path, $fileName);
+        // $imgExt = $request->image->getClientOriginalExtension();
+        // $fileName = time() . '.' . $imgExt;
+        // $path = 'assets/images';
+        // $request->image->move($path, $fileName);
+        $fileName = $this->uploadFile($request->image, 'assets/images');
         $data['image'] = $fileName;
+        //storage unlink to delete image
     }
 
     // Set 'active' field based on checkbox value
     $data['active'] = $request->has('active');
-
 
         Client::where('id', $id)->update($data);
               return redirect('Clients');
