@@ -97,8 +97,8 @@ Route::prefix('cars')->group(function(){
 // // Route::get('test',function(){
 // //     return view('test');
 // });
-Route::get('form1',function(){
-    return view('form1');
+Route::get('stack',function(){
+    return view('stacked');
 });
 
 

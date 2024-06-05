@@ -7,7 +7,8 @@
       <li class="active"><a href="{{ route('Add') }}">Add</a></li>
           <li><a href="{{ route('Clients') }}">Clients</a></li>
           <li><a href="{{ route('trashedClients') }}">Trash</a></li>
-       
+       @yield('menu')
+       @stack('submenue')
     </ul>
   </div>
 </nav>
