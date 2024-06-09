@@ -20,12 +20,14 @@
         <td>Phone</td>
         <td>Email</td>
         <td>Website</td>
+        <td>city</td>
     </tr>
     <tr>
     <td>{{$client->ClienName}}</td>
         <td>{{$client->phone}}</td>
         <td>{{$client->email}}</td>
         <td>{{$client->website}}</td>
+        <td>{{$client->city->city}}</td>
         </tr>
  
     </tbody>
