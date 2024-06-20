@@ -4,10 +4,25 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MyController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\ContactController;
+
+Route::get('mysession',[MyController::class,'mysession'])->name('mysession');
+
+Route::get('restoresession',[MyController::class,'restorsession'])->name('restorsession');
+
+Route::get('deletsession',[MyController::class,'deletsession'])->name('deletsession');
 
 
+Route::get('sendClientMail',[MyController::class,'sendClientMail'])->name('sendClientMail');
 
-Route::get('formdisplay',[ClientController::class,'create'])->name('receiveform2');
+// Display the contact form
+Route::get('showContactForm', [ContactController::class,'showContactForm'])->name('showContactForm');
+
+// Handle form submission and send email
+Route::post('sendEmail', [ContactController::class,'sendEmail'])->name('sendEmail');
+
+
+Route::get('formdisplay',[ClientController::class,'create'])->middleware('verified')->name('receiveform2');
 Route::get('Add',[ClientController::class,'create'])->name('Add');
 Route::get('Clients',[ClientController::class,'index'])->name('Clients');
 Route::post('insertClient',[ClientController::class,'store'])->name('insertClient');
@@ -97,8 +112,8 @@ Route::prefix('cars')->group(function(){
 // // Route::get('test',function(){
 // //     return view('test');
 // });
-Route::get('stack',function(){
-    return view('stacked');
+Route::get('/',function(){
+    return view('welcome');
 });
 
 
@@ -124,3 +139,7 @@ Route::post('/receive-form', function (Request $request) {
 //     return view('formdisplay');
 // })->name('receiveform2');
 
+
+Auth::routes(['verify'=>true]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

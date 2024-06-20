@@ -20,6 +20,7 @@ class Client extends Model
         'active',
         'image',
         'address',
+        'theMessage',
     ];
     public function City(){
         return $this->belongsTo(City::class);
