@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('city_id')->constrained('cities');
             $table->boolean('active');
             $table->string('image', 100);
+            $table->string('address');
             $table->softDeletes();
             $table->timestamps();
         });

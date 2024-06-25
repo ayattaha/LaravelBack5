@@ -6,6 +6,13 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ContactController;
 
+Route::group(
+    [
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){
+    // Your routes
+
 Route::get('mysession',[MyController::class,'mysession'])->name('mysession');
 
 Route::get('restoresession',[MyController::class,'restorsession'])->name('restorsession');
@@ -119,15 +126,15 @@ Route::get('/',function(){
 
 // Route::post('displayForm', 'FormController@receiveForm1')->name('receiveform1');
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 
-Route::post('/receive-form', function (Request $request) {
-    $fname = $request->input('fname');
-    $lname = $request->input('lname');
+// Route::post('/receive-form', function (Request $request) {
+//     $fname = $request->input('fname');
+//     $lname = $request->input('lname');
 
     // Pass data to the view and return it
-    return view('displayForm', compact('fname', 'lname'));
-})->name('receiveform1');
+//     return view('displayForm', compact('fname', 'lname'));
+// })->name('receiveform1');
 
 
 // Route::post('recform1',function(){
@@ -143,3 +150,5 @@ Route::post('/receive-form', function (Request $request) {
 Auth::routes(['verify'=>true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+});

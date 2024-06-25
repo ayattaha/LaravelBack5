@@ -47,8 +47,8 @@ class LoginController extends Controller
    }
 
    public function credentials(Request $request){
-    if(is_numeric($request->name)){
-    return ['name'=>$request->name, 'password'=>$request->password];
+    if($request->name){
+        return ['name'=>$request->name, 'password'=>$request->password];
     }
     }
         

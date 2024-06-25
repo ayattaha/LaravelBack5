@@ -7,6 +7,8 @@
       <li class="active"><a href="{{ route('Add') }}">Add</a></li>
           <li><a href="{{ route('Clients') }}">Clients</a></li>
           <li><a href="{{ route('trashedClients') }}">Trash</a></li>
+          <li><a href="{{ LaravelLocalization::getLocalizedURL('en')}}">English</a></li>
+          <li><a href="{{ LaravelLocalization::getLocalizedURL('ar')}}">العربية</a></li>
        @yield('menu')
        @stack('submenue')
     </ul>
