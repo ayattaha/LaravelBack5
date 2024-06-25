@@ -11,12 +11,12 @@
 <body>
 @include('includes.nav')
 <div class="container">
-  <h2>Clients Data</h2>
+  <h2>{{__('messages.client_data')}}</h2>
   <table class="table table-hover">
     <thead>
     <tbody>
       <tr>
-        <td>Name</td>
+        <td>{{__('messages.client_name')}}</td>
         <td>Phone</td>
         <td>Email</td>
         <td>Website</td>
