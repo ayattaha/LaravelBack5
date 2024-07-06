@@ -9,9 +9,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+  
 @include('includes.nav')
 <div class="container">
-  <h2>{{__('messages.client_data')}}</h2>
+  <h2>{{__('messages.client_data')}}  {{$myVal}}</h2>
   <table class="table table-hover">
     <thead>
     <tbody>

@@ -9,6 +9,7 @@
           <li><a href="{{ route('trashedClients') }}">Trash</a></li>
           <li><a href="{{ LaravelLocalization::getLocalizedURL('en')}}">English</a></li>
           <li><a href="{{ LaravelLocalization::getLocalizedURL('ar')}}">العربية</a></li>
+          <li><a href="{{ route('facebookRedirect') }}">Login with facebook</a></li>
        @yield('menu')
        @stack('submenue')
     </ul>

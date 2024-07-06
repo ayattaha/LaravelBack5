@@ -28,6 +28,14 @@ Route::get('showContactForm', [ContactController::class,'showContactForm'])->nam
 // Handle form submission and send email
 Route::post('sendEmail', [ContactController::class,'sendEmail'])->name('sendEmail');
 
+// rout link to facebook
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('facebook')->redirect();
+    })->name('facebookRedirect');
+Route::get('/auth/callback', function () {
+    $user = Socialite::driver('facebook')->user();
+    });
+
 
 Route::get('formdisplay',[ClientController::class,'create'])->middleware('verified')->name('receiveform2');
 Route::get('Add',[ClientController::class,'create'])->name('Add');
